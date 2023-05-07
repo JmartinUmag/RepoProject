@@ -1,0 +1,4 @@
+.bg-color {
+    min-height: calc(100vh - 4rem); /* 4rem = 2 x 2rem (m-2) */
+ }
+  
