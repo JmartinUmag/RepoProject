@@ -15,38 +15,40 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="50%"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Inicio</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Redes</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Frontend</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Backend</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Mis cursos</a></li>
-                    </ul>
 
-                    <form class="d-flex">
-                    <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-secondary">search</button>
-                    </div>
-                        <button class="mx-2 btn btn-outline-dark" type="submit">
-                            Perfil
-                        </button>
-                    </form>
-                </div>
+        <div class="row">
+            <div class="col-12 col-md-6 fondoRegistro">
+                <img src="img/fondoRegistro.png" width="100%">
             </div>
-        </nav>
+            <div class="col-12 col-md-5">
+                <!-- formulario de registro: nombre, apellido, email, contraseña, aceptar terminos y condiciones, boton de registro, boton de inicio de sesion -->
+                <div class="col-6 offset-3">
+                    <img src="img/logo.png" width="20%">
+                    <h1>¡Aprende con nosotros!</h1>
+                </div>
+                <form class="row g-3 mx-2">
+                    <div class="col-md-12">
+                        <label for="inputNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputNombre">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputApellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="inputApellido">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="inputEmail">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputPassword" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="inputPassword">
+                    </div>
+                    <!-- checkbox -->
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <!-- iniciar sesion -->
+                    <button type="submit" class="btn btn-primary">¿Ya tienes cuenta?  Iniciar sesión</button>
+            </div>
+        </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
