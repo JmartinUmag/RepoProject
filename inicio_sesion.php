@@ -22,18 +22,13 @@
             <div class="col-md-5">
                 <!-- formulario de registro: nombre, apellido, email, contraseña, aceptar terminos y condiciones, boton de registro, boton de inicio de sesion -->
                 <div class="mt-5 col-10 offset-1 d-md-flex">
-                    <a class="ms-3" href="index.html"><img src="img/logo.png"></a>
+                    <a class="ms-3" href="index.php"><img src="img/logo.png"></a>
                     <h1 class="flex-shrink-0 ms-3">¡Aprende con nosotros!</h1>
                 </div>
+
+                <h2 class="mt-5 flex-shrink-0 text-black mx-4">Iniciar sesión</h2>
                 <form class="row g-3 mx-2 my-4">
                     <div class="col-md-12">
-                        <label for="inputNombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="inputNombre">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="inputApellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="inputApellido">
-                    </div>
                     <div class="col-12">
                         <label for="inputEmail" class="form-label">Email</label>
                         <input type="email" class="form-control" id="inputEmail">
@@ -42,10 +37,17 @@
                         <label for="inputPassword" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="inputPassword">
                     </div>
-                    <!-- checkbox -->
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <div class="col-12 mb-3">
+                        <label for="selectTipoUsuario" class="form-label">Tipo de usuario</label>
+                        <select class="form-select" id="selectTipoUsuario">
+                          <option selected>Selecciona una opción</option>
+                          <option value="alumno">Alumno</option>
+                          <option value="profesor">Profesor</option>
+                          <option value="administrador">Administrador</option>
+                        </select>
+                      </div>
                     <!-- iniciar sesion -->
-                    <a class="btn btn-primary" href="inicio_sesion.html">¿Ya tienes cuenta?  Iniciar sesión</a>
+                    <a class="btn btn-primary" href="#!">Iniciar sesión</a>
             </div>
         </div>
         <!-- Footer-->

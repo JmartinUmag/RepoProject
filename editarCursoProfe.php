@@ -18,24 +18,21 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="50%"></a>
+                <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="50%"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="inicioAdmin.html">Inicio</a></li>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="misCursosAdmin.html">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="crudAdmin.html">CRUD</a></li>
+                        <li class="nav-item"><a class="nav-link" href="misCursosProfe.php">Cursos</a></li>
                     </ul>
 
                         <form class="d-flex">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                             <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profesor</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="misDatos.html">Mis Datos</a></li>
+                            <li><a class="dropdown-item" href="misDatos.php">Mis Datos</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="index.html">Cerrar Sesion</a></li>
+                            <li><a class="dropdown-item" href="index.php">Cerrar Sesion</a></li>
                         </ul>
                     </ul>
                         </form>
@@ -49,30 +46,13 @@
         <hr>
         <form action="#" method="post">
             <div class="form-group row">
-                <label for="nombre-curso" class="col-sm-2 col-form-label">Nombre del curso</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombre-curso" name="nombre-curso" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="profesor" class="col-sm-2 col-form-label">Profesor</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="profesor" name="profesor">
-                        <option value="1">Juan Perez</option>
-                        <option value="2">Pedro Garcia</option>
-                        <option value="3">Ana Ruiz</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="clases" class="col-sm-2 col-form-label">Clases</label>
                 <div class="col-12 w-auto">
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th>Número</th>
-                          <th>Nombre</th>
+                          <th>Nombre clase</th>
                           <th>Descripción</th>
                         </tr>
                       </thead>
@@ -100,7 +80,7 @@
                   </div>
                   <button type="button" class="btn btn-dark">Guardar</button>
                   <button type="button" class="btn btn-primary">Agregar Clase</button>
-                  <a href="#" class="btn btn-danger" role="button"><i class="far fa-trash-alt"></i> Eliminar curso</a>
+                  <a href="editarUsuarioCurso.php"><button type="button" class="btn btn-secondary">Ver alumnos</button></a>
                 </div>
               </div>
             <div class="offset-md-4 d-flex justify-content-between">
