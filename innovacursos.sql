@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 29-05-2023 a las 14:19:01
+-- Tiempo de generación: 29-05-2023 a las 18:35:11
 -- Versión del servidor: 5.7.40
 -- Versión de PHP: 8.0.26
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `innovacursos`
 --
+CREATE DATABASE IF NOT EXISTS `innovacursos` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `innovacursos`;
 
 -- --------------------------------------------------------
 
@@ -213,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `id_Tipo` int(11) NOT NULL,
   PRIMARY KEY (`id_Usuario`,`id_Tipo`),
   KEY `fk_Usuario_Tipo_usuario_idx` (`id_Tipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
