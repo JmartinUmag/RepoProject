@@ -22,7 +22,7 @@
             <div class="col-md-5">
                 <!-- formulario de registro: nombre, apellido, email, contraseña, aceptar terminos y condiciones, boton de registro, boton de inicio de sesion -->
                 <div class="mt-5 col-10 offset-1 d-md-flex">
-                    <a class="ms-3" href="index.html"><img src="img/logo.png"></a>
+                    <a class="ms-3" href="index.php"><img src="img/logo.png"></a>
                     <h1 class="flex-shrink-0 ms-3">¡Aprende con nosotros!</h1>
                 </div>
 

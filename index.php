@@ -1,3 +1,6 @@
+<?php
+include "conexionDB.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -18,22 +21,22 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html"><img src="img/logo.png" width="50%"></a>
+                <a class="navbar-brand" href="index.php"><img src="img/logo.png" width="50%"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Inicio</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="cursos.html">Redes</a></li>
+                                <li><a class="dropdown-item" href="cursos.php">Redes</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="cursos.html">Frontend</a></li>
+                                <li><a class="dropdown-item" href="cursos.php">Frontend</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="cursos.html">Backend</a></li>
+                                <li><a class="dropdown-item" href="cursos.php">Backend</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="misCursos.html">Mis cursos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="misCursos.php">Mis cursos</a></li>
                     </ul>
 
                         <form class="d-md-flex">
@@ -41,9 +44,9 @@
                                     <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="inicio_sesion.html"">Iniciar sesión</a></li>
+                                        <li><a class="dropdown-item" href="inicio_sesion.php">Iniciar sesión</a></li>
                                         <li><hr class="dropdown-divider" /></li>
-                                        <li><a class="dropdown-item" href="registro.html">Registrarse</a></li>
+                                        <li><a class="dropdown-item" href="registro.php">Registrarse</a></li>
                                       </ul>
                                 </ul>
                         </form>
@@ -100,17 +103,17 @@
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner rounded">
                         <div class="carousel-item active">
-                            <a href="inscripcionCurso.html">
+                            <a href="inscripcionCurso.php">
                                 <img src="img/uml.png" class="d-block w-100 h-30" alt="...">
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="inscripcionCurso.html">
+                            <a href="inscripcionCurso.php">
                                 <img src="img/css.png" class="d-block w-100 h-30" alt="...">
                             </a>
                         </div>
                         <div class="carousel-item">
-                            <a href="inscripcionCurso.html">
+                            <a href="inscripcionCurso.php">
                                 <img src="img/php.png" class="d-block w-100 h-30" alt="...">
                             </a>
                         </div>
@@ -210,7 +213,7 @@
                 </div>
                 <!-- Product actions-->
                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="cursos.html">Ver más cursos</a></div>
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="cursos.php">Ver más cursos</a></div>
                 </div>
                 <!-- ModalDetails-->
                 <div class="modal fade" id="ModalDetalles" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -247,7 +250,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <a class="btn btn-primary" href="inscripcionCurso.html">Ver Curso</a>
+                            <a class="btn btn-primary" href="inscripcionCurso.php">Ver Curso</a>
                         </div>
                         </div>
                     </div>
