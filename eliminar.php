@@ -13,7 +13,7 @@
         }
         else
         {
-            echo "No se puede eliminar el producto";
+            echo "No se ha podido eliminar el dato solicitado";
         }
 }
 ?>
