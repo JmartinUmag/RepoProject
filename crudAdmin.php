@@ -54,41 +54,101 @@
                                 <h2 class="flex-shrink-0 text-white mx-4">Sección CRUD</h2>
                                 <div class="input-group w-auto">
                                 <form class="d-flex" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                <select class="form-select bg-dark text-white" name="tablaSeleccionada" id="inputGroupSelect01">
+                                <select class="form-select bg-dark text-white" name="tablaSeleccionada" id="grupo">
                                     <option value="Alumnos">Alumnos</option>
                                     <option value="Profesores">Profesores</option>
-                                    <option value="Categorías">Categorías</option>
-                                    <option value="Categorías">Categorías</option>
+                                    <option value="Categorias">Categorías</option>
+                                    <option value="Cursos">Cursos</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="ms-3 btn btn-outline-light" name="submit">Aceptar</button>
                                 </form>
                             </div>
                         </div>
-                        <table class="table text-white mx-4 m-md-5">
+                        <?php
+                        if(isset($_POST['submit'])&& isset($_POST['tablaSeleccionada']))
+                        {
+                            ?>
+                            <table class="table table-striped table-dark my-5">
                             <thead>
+                                <?php
+                                if($_POST['tablaSeleccionada'] == 'Alumnos'||$_POST['tablaSeleccionada'] == 'Profesores')
+                                {
+                                ?>
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
-                            </thead>
-                                <tbody>
                                 <?php
-                                    // Verificar si se ha enviado el formulario y la opción seleccionada es "Alumnos"
-                                    if (isset($_POST['submit']) && $_POST['tablaSeleccionada'] === 'Alumnos') {
+                                }
+                                else if($_POST['tablaSeleccionada'] == 'Categorias')
+                                {
+                                ?>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre Categoria</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                                <?php
+                                }
+                                else if($_POST['tablaSeleccionada'] == 'Cursos')
+                                {
+                                ?>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre Curso</th>
+                                    <th scope="col">Relevancia</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    // Verificar si la opción seleccionada es "Alumnos"
+                                    if ($_POST['tablaSeleccionada'] === 'Alumnos') {
                                         // Realizar consulta a la base de datos
-                                        $sql = "SELECT id_Usuario, nombre, apellido, email, id_Tipo FROM usuario";
+                                        $sql = "SELECT id_Usuario, nombre, apellido, email FROM Usuario where id_Tipo='3'";
                                         $result = $conn->query($sql);
-
                                         // Verificar si hay resultados
                                         if ($result->num_rows > 0) {
                                             // Mostrar los datos en la tabla
                                             while ($row = $result->fetch_assoc()) {
                                                 echo "<tr>";
                                                 echo "<th scope='row'>" . $row['id_Usuario'] . "</th>";
-                                                echo "<td>" . $row['nombre'] . " " . $row['apellido'] . "</td>";
+                                                echo "<td>" . $row['nombre'] . "</td>";
+                                                echo "<td>" . $row['apellido'] . "</td>";
+                                                echo "<td>" . $row['email'] . "</td>";
+                                                echo "<td>";
+                                                echo "<a href='editarUsuario.php?id=" . $row['id_Usuario'] . "'><button><i class='bi bi-pen'></i></button></a>";
+                                                echo "<a href='eliminar.php?id=" . $row['id_Usuario'] . "&tabla=".'usuario'."'><button><i class='bi bi-trash'></i></button></a>";
+                                                echo "</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                        }
+                                        // Cerrar la conexión (opcional si no se utilizará más adelante)
+                                        $conn->close();
+                                    }
+                                    // Verificar si la opción seleccionada es "Profesores"
+                                    else if ($_POST['tablaSeleccionada'] === 'Profesores') {
+                                        // Realizar consulta a la base de datos
+                                        $sql = "SELECT id_Usuario, nombre, apellido, email FROM Usuario where id_Tipo='2'";
+                                        $result = $conn->query($sql);
+                                        // Verificar si hay resultados
+                                        if ($result->num_rows > 0) {
+                                            // Mostrar los datos en la tabla
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<th scope='row'>" . $row['id_Usuario'] . "</th>";
+                                                echo "<td>" . $row['nombre'] . "</td>";
+                                                echo "<td>" . $row['apellido'] . "</td>";
                                                 echo "<td>" . $row['email'] . "</td>";
                                                 echo "<td>";
                                                 echo "<a href='editarUsuario.php?id=" . $row['id_Usuario'] . "'><button><i class='bi bi-pen'></i></button></a>";
@@ -103,13 +163,77 @@
                                         // Cerrar la conexión (opcional si no se utilizará más adelante)
                                         $conn->close();
                                     }
+                                    // Verificar si la opción seleccionada es "Categorias"
+                                    else if ($_POST['tablaSeleccionada'] === 'Categorias') {
+                                        // Realizar consulta a la base de datos
+                                        $sql = "SELECT id_Categoria, nombre FROM Categoria";
+                                        $result = $conn->query($sql);
+
+                                        // Verificar si hay resultados
+                                        if ($result->num_rows > 0) {
+                                            // Mostrar los datos en la tabla
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<th scope='row'>" . $row['id_Categoria'] . "</th>";
+                                                echo "<td>" . $row['nombre'] . "</td>";
+                                                echo "<td>";
+                                                #Ver a donde redirigir
+                                                #
+                                                #
+                                                #
+                                                #echo "<a href='editarUsuario.php?id=" . $row['id_Categoria'] . "'><button><i class='bi bi-pen'></i></button></a>";
+                                                echo "<button><i class='bi bi-trash'></i></button>";
+                                                echo "</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                        }
+
+                                        // Cerrar la conexión (opcional si no se utilizará más adelante)
+                                        $conn->close();
+                                    }
+                                    // Verificar si la opción seleccionada es "Cursos"
+                                    else if ($_POST['tablaSeleccionada'] == 'Cursos') {
+                                        // Realizar consulta a la base de datos
+                                        $sql = "SELECT C.id_Curso, C.nombre_cur, C.relevancia, K.nombre FROM Curso C, Categoria K WHERE C.id_Categoria=K.id_Categoria";
+                                        $result = $conn->query($sql);
+                                        // Verificar si hay resultados
+                                        if ($result->num_rows > 0) {
+                                            // Mostrar los datos en la tabla
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<th scope='row'>" . $row['id_Curso'] . "</th>";
+                                                echo "<td>" . $row['nombre_cur'] . "</td>";
+                                                echo "<td>" . $row['relevancia'] . "</td>";
+                                                echo "<td>" . $row['nombre'] . "</td>";
+                                                echo "<td>";
+                                                echo "<a href='editarCurso.php?id=" . $row['id_Curso'] . "'><button><i class='bi bi-pen'></i></button></a>";
+                                                echo "<button><i class='bi bi-trash'></i></button>";
+                                                echo "</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                        }
+
+                                        // Cerrar la conexión (opcional si no se utilizará más adelante)
+                                        $conn->close();
+                                    }
+                                    else if (isset($_POST['submit']) && $_POST['tablaSeleccionada'] == 'Opcion') {
+
+                                        // Cerrar la conexión (opcional si no se utilizará más adelante)
+                                        $conn->close();
+                                    }
                                     else {
                                         echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
                                     }
                                 ?>
-
                                 </tbody>
                             </table>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
