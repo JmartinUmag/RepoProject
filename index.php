@@ -47,7 +47,7 @@ include "conexionDB.php";
                                         <li><a class="dropdown-item" href="inicio_sesion.php">Iniciar sesión</a></li>
                                         <li><hr class="dropdown-divider" /></li>
                                         <li><a class="dropdown-item" href="registro.php">Registrarse</a></li>
-                                      </ul>
+                                    </ul>
                                 </ul>
                         </form>
                     

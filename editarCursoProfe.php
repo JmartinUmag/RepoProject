@@ -91,7 +91,7 @@
     </div>
 
         <!-- Footer-->
-        <footer class="py-5 bg-dark mt-5 fixed-bottom">
+        <footer class="py-5 bg-dark mt-5 bottom">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Innovacursos 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->

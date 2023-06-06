@@ -61,7 +61,7 @@
                     </br></br>
                     <div class="ratio ratio-16x9">
                         <iframe src="https://www.youtube.com/embed/nCB1gEkRZ1g?controls=0" title="YouTube video" allowfullscreen></iframe>
-                      </div>
+                    </div>
                     <div class="card m-3">
                         <div class="card-body">
                             <h4 class="display-8 fw-bolder">Capitulo 1: como hacer un archivo</h4>

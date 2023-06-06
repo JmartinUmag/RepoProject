@@ -1,3 +1,16 @@
+<?php
+    include_once "conexionDB.php";
+    $id=$_GET['id'];
+    /*Esta consulta es para obtener los datos relacionados al curso como lo son los id de los profesores
+    mediante la tabla usuario, el id de las clases, el id de la categoria y el id de las pruebas*/
+    $sql = "SELECT * FROM curso c, usuario_curso uc, usuario u, clases l, categoria t, pruebas p WHERE c.id_Curso='$id' AND c.id_Curso=uc.id_Curso AND u.id_Usuario=uc.id_Usuario AND uc.id_Tipo='2' AND l.id_Clases=c.id_Clases AND t.id_Categoria=c.id_Categoria AND c.id_Pruebas=p.id_Pruebas;";
+    $result = $conn->query($sql);
+    $row=$result->fetch_assoc();
+    $id_Usuario=$row['id_Usuario'];
+    $id_Clases=$row['id_Clases'];
+    $id_Categoria=$row['id_Categoria'];
+    $id_Pruebas=$row['id_Pruebas'];
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -47,62 +60,139 @@
     <div class="container my-4">
         <h2>Editar Curso</h2>
         <hr>
-        <form action="#" method="post">
+        <form action="editCurProc.php" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
-                <label for="nombre-curso" class="col-sm-2 col-form-label">Nombre del curso</label>
+                <label for="id" class="col-sm-2 col-form-label">ID Curso</label>
+                <div class="col-sm-3">
+                <input type="text" required="required" name="id" value="<?=$id?>" disabled>
+                <input type="hidden" name="id_Curso" value="<?=$id?>">
+                </div>
+                <label for="relevancia" class="col-sm-2 col-form-label">Relevancia</label>
+                <div class="col-sm-3">
+                <input type="text" required="required" name="relevancia" value="<?=$row['relevancia']?>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="nombre_cur" class="col-sm-2 col-form-label">Nombre del curso</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nombre-curso" name="nombre-curso" required>
+                    <input type="text" class="form-control" name="nombre_cur" value="<?=$row['nombre_cur']?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="profesor" class="col-sm-2 col-form-label">Profesor</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="profesor" name="profesor">
-                        <option value="1">Juan Perez</option>
-                        <option value="2">Pedro Garcia</option>
-                        <option value="3">Ana Ruiz</option>
+                    <select class="form-control" name="profesor">
+                        <option value="<?=$id_Usuario?>"><?=$row['nombre']?> <?=$row['apellido']?></option>
+                        <?php
+                            $sql2 = "SELECT * FROM usuario WHERE id_Tipo='2' AND NOT id_Usuario='$id_Usuario' AND NOT id_Usuario='0';";
+                            $result2 = $conn->query($sql2);
+                            while($row2=$result2->fetch_assoc()){?>
+                            <?=$id_Usuario?>
+                                <option value="<?=$row2['id_Usuario']?>"><?=$row2['nombre']?> <?=$row2['apellido']?></option>"
+                            <?php
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dir_imagen" class="col-sm-2 col-form-label">Directorio imagen </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="dir_imagen" value="<?=$row['dir_imagen']?>" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="detalles" class="col-sm-2 col-form-label">Detalles del curso </label>
+                <div class="col-sm-10">
+                    <textarea name="detalles" class="form-control" rows="4" cols="50"><?=$row['detalles']?></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="categoria">
+                        <option value="<?=$id_Categoria?>"><?=$row['nombre_cat']?></option>
+                        <?php
+                            $sql3 = "SELECT * FROM categoria WHERE NOT id_Categoria='$id_Categoria' AND NOT id_Categoria='0';";
+                            $result3 = $conn->query($sql3);
+                            while($row3=$result3->fetch_assoc()){?>
+                                <option value="<?=$row3['id_Categoria']?>"><?=$row3['nombre_cat']?></option>"
+                            <?php
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="clases" class="col-sm-2 col-form-label">Clases</label>
                 <div class="col-12 w-auto">
-                  <div class="table-responsive">
+                    <div class="table-responsive">
+                        
                     <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>Número</th>
-                          <th>Nombre</th>
-                          <th>Descripción</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td><input type="text" value="Clase 1"></td>
-                          <td><input type="text" value="Descripción de la clase 1."></td>
-                          <td><button><i class="bi bi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td><input type="text" value="Clase 2"></td>
-                          <td><input type="text" value="Descripción de la clase 2."></td>
-                          <td><button><i class="bi bi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td><input type="text" value="Clase 3"></td>
-                          <td><input type="text" value="Descripción de la clase 3."></td>
-                          <td><button><i class="bi bi-trash"></i></button></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button type="button" class="btn btn-dark">Guardar</button>
-                  <button type="button" class="btn btn-primary">Agregar Clase</button>
-                  <a href="#" class="btn btn-danger" role="button"><i class="far fa-trash-alt"></i> Eliminar curso</a>
+                        <thead>
+                            <tr>
+                            <th>Número</th>
+                            <th>URL</th>
+                            <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $sql = "SELECT * FROM clases WHERE id_Clases='$id_Clases';";
+                                $result = $conn->query($sql);
+                                $row=$result->fetch_assoc();
+                                $i=1;
+                                while($i<=3){
+                            ?>
+                                <tr>
+                                <td><?=$i?></td>
+                                <td><input type="text" name="url<?=$i?>" value="<?=$row['URL_video'.$i]?>"></td>
+                                <td><input type="text" name="desc<?=$i?>" value="<?=$row['descripcion'.$i]?>"></td>
+                                </tr>
+                                <?php
+                                $i++;
+                                }
+                                ?>
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
-              </div>
+            </div>
+            <div class="form-group row">
+                <label for="clases" class="col-sm-2 col-form-label">Pruebas o Examenes</label>
+                <div class="col-12 w-auto">
+                    <div class="table-responsive">
+                        
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th>Número</th>
+                            <th>URL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $sql = "SELECT * FROM pruebas WHERE id_Pruebas='$id_Pruebas';";
+                                $result = $conn->query($sql);
+                                $row=$result->fetch_assoc();
+                                $i=1;
+                                while($i<=3){
+                            ?>
+                                <tr>
+                                <td><?=$i?></td>
+                                <td><input type="text" name="url<?=$i?>" value="<?=$row['URL'.$i]?>"></td>
+                                </tr>
+                                <?php
+                                $i++;
+                                }
+                                ?>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Guardar</button>
+            <a href="eliminar.php?id=<?=$id?>&tabla=curso" class="btn btn-danger" role="button"><i class="far fa-trash-alt"></i> Eliminar curso</a>
             <div class="offset-md-4 d-flex justify-content-between">
                 <div class="text-right">
                 </div>
@@ -111,7 +201,7 @@
     </div>
 
         <!-- Footer-->
-        <footer class="py-5 bg-dark mt-5 fixed-bottom">
+        <footer class="py-5 bg-dark mt-5 bottom">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Innovacursos 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->

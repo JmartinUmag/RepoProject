@@ -53,15 +53,15 @@
                             <div class="d-md-flex">
                                 <h2 class="flex-shrink-0 text-white mx-4">Sección CRUD</h2>
                                 <div class="input-group w-auto">
-                                <form class="d-flex" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                                <select class="form-select bg-dark text-white" name="tablaSeleccionada" id="inputGroupSelect01">
+                                <form class="d-flex" method="POST" action="<?=$_SERVER['PHP_SELF']?>">
+                                <select class="form-select bg-dark text-white" name="tablaSeleccionada">
                                     <option value="Alumnos">Alumnos</option>
                                     <option value="Profesores">Profesores</option>
                                     <option value="Categorias">Categorías</option>
                                     <option value="Cursos">Cursos</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="ms-3 btn btn-outline-light" name="submit">Aceptar</button>
+                                <button type="submit" class="ms-3 btn btn-outline-light" name="submit">Aceptar</button>                        
                                 </form>
                             </div>
                         </div>
@@ -82,16 +82,7 @@
                                     <th scope="col">Correo</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
-                                <?php
-                                }
-                                else if($_POST['tablaSeleccionada'] == 'Categorias')
-                                {
-                                ?>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre Categoria</th>
-                                    <th scope="col">Opciones</th>
-                                </tr>
+                                <a href='agregarform.php?tabla=usuario'><button class="ms-3 btn btn-outline-light" name="agregar">AGREGAR USUARIO</button></a>    
                                 <?php
                                 }
                                 else if($_POST['tablaSeleccionada'] == 'Cursos')
@@ -104,6 +95,18 @@
                                     <th scope="col">Categoria</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
+                                <a href='agregarform.php?tabla=curso'><button class="ms-3 btn btn-outline-light" name="agregar">AGREGAR CURSO</button></a>    
+                                <?php
+                                }
+                                else if($_POST['tablaSeleccionada'] == 'Categorias')
+                                {
+                                ?>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre Categoria</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>             
+                                <a href='agregarform.php?tabla=categoria'><button class="ms-3 btn btn-outline-light" name="agregar">AGREGAR CATEGORIA</button></a>    
                                 <?php
                                 }
                                 ?>
@@ -113,7 +116,7 @@
                                     // Verificar si la opción seleccionada es "Alumnos"
                                     if ($_POST['tablaSeleccionada'] === 'Alumnos') {
                                         // Realizar consulta a la base de datos
-                                        $sql = "SELECT id_Usuario, nombre, apellido, email FROM Usuario where id_Tipo='3'";
+                                        $sql = "SELECT id_Usuario, nombre, apellido, email FROM Usuario where id_Tipo='3' AND NOT id_Usuario='0'";
                                         $result = $conn->query($sql);
                                         // Verificar si hay resultados
                                         if ($result->num_rows > 0) {
@@ -131,7 +134,7 @@
                                                 echo "</tr>";
                                             }
                                         } else {
-                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                            echo "<tr><td colspan='5'>No se encontraron resultados.</td></tr>";
                                         }
                                         // Cerrar la conexión (opcional si no se utilizará más adelante)
                                         $conn->close();
@@ -139,7 +142,7 @@
                                     // Verificar si la opción seleccionada es "Profesores"
                                     else if ($_POST['tablaSeleccionada'] === 'Profesores') {
                                         // Realizar consulta a la base de datos
-                                        $sql = "SELECT id_Usuario, nombre, apellido, email FROM Usuario where id_Tipo='2'";
+                                        $sql = "SELECT id_Usuario, nombre, apellido, email FROM Usuario where id_Tipo='2' AND NOT id_Usuario='0'";
                                         $result = $conn->query($sql);
                                         // Verificar si hay resultados
                                         if ($result->num_rows > 0) {
@@ -152,12 +155,12 @@
                                                 echo "<td>" . $row['email'] . "</td>";
                                                 echo "<td>";
                                                 echo "<a href='editarUsuario.php?id=" . $row['id_Usuario'] . "'><button><i class='bi bi-pen'></i></button></a>";
-                                                echo "<button><i class='bi bi-trash'></i></button>";
+                                                echo "<a href='eliminar.php?id=" . $row['id_Usuario'] . "&tabla=".'usuario'."'><button><i class='bi bi-trash'></i></button></a>";
                                                 echo "</td>";
                                                 echo "</tr>";
                                             }
                                         } else {
-                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                            echo "<tr><td colspan='5'>No se encontraron resultados.</td></tr>";
                                         }
 
                                         // Cerrar la conexión (opcional si no se utilizará más adelante)
@@ -166,7 +169,7 @@
                                     // Verificar si la opción seleccionada es "Categorias"
                                     else if ($_POST['tablaSeleccionada'] === 'Categorias') {
                                         // Realizar consulta a la base de datos
-                                        $sql = "SELECT id_Categoria, nombre FROM Categoria";
+                                        $sql = "SELECT * FROM Categoria WHERE NOT id_Categoria='0'";
                                         $result = $conn->query($sql);
 
                                         // Verificar si hay resultados
@@ -175,19 +178,19 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 echo "<tr>";
                                                 echo "<th scope='row'>" . $row['id_Categoria'] . "</th>";
-                                                echo "<td>" . $row['nombre'] . "</td>";
+                                                echo "<td>" . $row['nombre_cat'] . "</td>";
                                                 echo "<td>";
                                                 #Ver a donde redirigir
                                                 #
                                                 #
                                                 #
                                                 #echo "<a href='editarUsuario.php?id=" . $row['id_Categoria'] . "'><button><i class='bi bi-pen'></i></button></a>";
-                                                echo "<button><i class='bi bi-trash'></i></button>";
+                                                echo "<a href='eliminar.php?id=" . $row['id_Categoria'] . "&tabla=".'categoria'."'><button><i class='bi bi-trash'></i></button></a>";
                                                 echo "</td>";
                                                 echo "</tr>";
                                             }
                                         } else {
-                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                            echo "<tr><td colspan='3'>No se encontraron resultados.</td></tr>";
                                         }
 
                                         // Cerrar la conexión (opcional si no se utilizará más adelante)
@@ -196,7 +199,7 @@
                                     // Verificar si la opción seleccionada es "Cursos"
                                     else if ($_POST['tablaSeleccionada'] == 'Cursos') {
                                         // Realizar consulta a la base de datos
-                                        $sql = "SELECT C.id_Curso, C.nombre_cur, C.relevancia, K.nombre FROM Curso C, Categoria K WHERE C.id_Categoria=K.id_Categoria";
+                                        $sql = "SELECT C.id_Curso, C.nombre_cur, C.relevancia, K.nombre_cat FROM Curso C, Categoria K WHERE C.id_Categoria=K.id_Categoria";
                                         $result = $conn->query($sql);
                                         // Verificar si hay resultados
                                         if ($result->num_rows > 0) {
@@ -206,15 +209,15 @@
                                                 echo "<th scope='row'>" . $row['id_Curso'] . "</th>";
                                                 echo "<td>" . $row['nombre_cur'] . "</td>";
                                                 echo "<td>" . $row['relevancia'] . "</td>";
-                                                echo "<td>" . $row['nombre'] . "</td>";
+                                                echo "<td>" . $row['nombre_cat'] . "</td>";
                                                 echo "<td>";
                                                 echo "<a href='editarCurso.php?id=" . $row['id_Curso'] . "'><button><i class='bi bi-pen'></i></button></a>";
-                                                echo "<button><i class='bi bi-trash'></i></button>";
+                                                echo "<a href='eliminar.php?id=" . $row['id_Curso'] . "&tabla=".'curso'."'><button><i class='bi bi-trash'></i></button></a>";
                                                 echo "</td>";
                                                 echo "</tr>";
                                             }
                                         } else {
-                                            echo "<tr><td colspan='4'>No se encontraron resultados.</td></tr>";
+                                            echo "<tr><td colspan='5'>No se encontraron resultados.</td></tr>";
                                         }
 
                                         // Cerrar la conexión (opcional si no se utilizará más adelante)
