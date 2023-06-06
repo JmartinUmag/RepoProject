@@ -1,3 +1,10 @@
+<?php
+    include_once "conexionDB.php";
+    $id=$_GET['id'];
+    $sql = "SELECT * FROM usuario where id_Usuario='$id'";
+    $result = $conn->query($sql);
+    $row=$result->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -44,64 +51,38 @@
             </div>
         </nav>
         <!-- ENavigation-->
-        <div class="container my-4">
-            <h2>Nombre apellido</h2>
-            <hr>
-            <div class="form-group row">
-                <div class="col-12 w-auto">
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>Cursos</th>
-                          <th>Profesor</th>
-                          <th>Notas</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Lorem Ipsum</td>
-                          <td>John Doe</td>
-                          <td>
-                            <div class="d-flex justify-content-between">
-                              <span class="bg-primary text-white p-1 rounded mx-1">6</span>
-                              <span class="bg-secondary text-white p-1 rounded mx-1">5</span>
-                              <span class="bg-success text-white p-1 rounded mx-1">7</span>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Dolor Sit</td>
-                          <td>Jane Smith</td>
-                          <td>
-                            <div class="d-flex justify-content-between">
-                              <span class="bg-danger text-white p-1 rounded mx-1">2</span>
-                              <span class="bg-warning text-white p-1 rounded mx-1">4</span>
-                              <span class="bg-info text-white p-1 rounded mx-1">3</span>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Amet Consectetur</td>
-                          <td>Mike Johnson</td>
-                          <td>
-                            <div class="d-flex justify-content-between">
-                              <span class="bg-danger text-white p-1 rounded mx-1">1</span>
-                              <span class="bg-warning text-white p-1 rounded mx-1">7</span>
-                              <span class="bg-success text-white p-1 rounded mx-1">5</span>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <a href="crudAdmin.php"><button class="btn btn-secondary">Volver</button></a>
-                  </div>
-                </div>
-            </div>
-        </div>
-
+        <form action="editUsProc.php" method="POST" enctype="multipart/form-data">
+          <div class="container my-4">
+            <h4><?=$row['nombre']?> <?=$row['apellido']?></h4>
+            <div class="input-group">
+              <span class="input-group-text">ID Usuario</span>
+              <input type="text" class="form-control, col-2, text-center" required="required" name="id" value="<?=$id?>" disabled>
+              <input type="hidden" name="id_Usuario" value="<?=$id?>">
+            </div></br>
+            <div class="input-group">
+              <span class="input-group-text">Nombre</span>
+              <input type="text" class="form-control, text-center" required="required" name="nombre" value="<?=$row['nombre']?>">
+              <span class="input-group-text">Apellido</span>
+              <input type="text" class="form-control, text-center" name="apellido" value="<?=$row['apellido']?>">
+            </div></br>
+            <div class="input-group">
+              <span class="input-group-text">Email</span>
+              <input type="email" class="form-control, text-center" required="required" name="email" value="<?=$row['email']?>">
+            </div></br>
+            <div class="input-group">
+              <span class="input-group-text">Contraseña</span>
+              <input type="password" class="form-control, text-center" required="required" name="contrasena" value="<?=$row['contrasena']?>">
+            </div></br>
+            <div class="input-group">
+              <span class="input-group-text">ID Tipo de Usuario</span>
+              <input type="number" class="form-control, col-2, text-center" required="required" name="id_tipo" value="<?=$row['id_Tipo']?>">
+            </div></br>
+            <button class="btn btn-primary" type="submit">Modificar</button>
+            <a href="editarUsuario.php"><button class="btn btn-secondary">Volver</button></a>
+          </div>
+          </form>
         <!-- Footer-->
-        <footer class="py-5 bg-dark mt-5 fixed-bottom">
+        <footer class="py-5 bg-dark mt-5 bottom">
             <div class="container"><p class="m-0 text-center text-white">Copyright © 
               Innovacursos 2023</p>
             </div>

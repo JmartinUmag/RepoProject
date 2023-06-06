@@ -40,12 +40,12 @@
                     <div class="col-12 mb-3">
                         <label for="selectTipoUsuario" class="form-label">Tipo de usuario</label>
                         <select class="form-select" id="selectTipoUsuario">
-                          <option selected>Selecciona una opción</option>
-                          <option value="alumno">Alumno</option>
-                          <option value="profesor">Profesor</option>
-                          <option value="administrador">Administrador</option>
+                            <option selected>Selecciona una opción</option>
+                            <option value="alumno">Alumno</option>
+                            <option value="profesor">Profesor</option>
+                            <option value="administrador">Administrador</option>
                         </select>
-                      </div>
+                    </div>
                     <!-- iniciar sesion -->
                     <a class="btn btn-primary" href="#!">Iniciar sesión</a>
             </div>

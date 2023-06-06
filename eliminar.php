@@ -3,8 +3,8 @@
 {
     $id=$_GET['id'];
     $tabla=$_GET['tabla'];
-
-        $query="DELETE FROM $tabla WHERE id_Usuario=$id";
+        $tabla=ucfirst($tabla);
+        $query="DELETE FROM $tabla WHERE id_$tabla=$id";
         $resultado=$conn->query($query);
             
         if($resultado)
@@ -13,7 +13,7 @@
         }
         else
         {
-            echo "No se ha podido eliminar el dato solicitado";
+            echo "No se puede eliminar el registro";
         }
 }
 ?>
